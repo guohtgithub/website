@@ -18,8 +18,8 @@ module.exports = {
     open:true,
     proxy:{
       '/':{
-        target:'http://192.168.0.12',
-        ws:false
+        target:'http://192.168.0.12:83',
+        ws:false,
       }
     }
   }

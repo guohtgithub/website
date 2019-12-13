@@ -34,7 +34,7 @@ export const scrollFn = (id) =>{
       let offsetTop = window.pageYOffset || 
         document.documentElement.scrollTop || 
         document.body.scrollTop
-      if (offsetTop>320) {
+      if (offsetTop>150) {
         toolbar.style.background="#313131"
       }else{
         toolbar.style.background='none'

@@ -20,8 +20,8 @@ Vue.config.productionTip = false
 
 // 更新menu的数据
 router.beforeEach((to,from,next) =>{
-  if(store.getters.solution || store.getters.product){
-    store.dispatch('GetInfo').then(res =>{
+  if(!store.getters.solution || !store.getters.product){
+    store.dispatch('GetInfo',store.getters.language).then(res =>{
       next({...to,replace:true})
     })
   }else{

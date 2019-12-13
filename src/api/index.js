@@ -1,22 +1,22 @@
 import request from './network'
 
 class serviceManger{
-  menuInfo(){
-    return request({
-      method:'post',
-      url:'/'
-    })
-  }
-  getProduct(){
+  menuInfo(param){
     return request({
       method:'get',
-      url:'/product'
+      url:`/home?language=${param}`
     })
   }
-  getService(){
+  getProduct(param){
     return request({
       method:'get',
-      url:'/service'
+      url:`/product?language=${param}`
+    })
+  }
+  getService(param){
+    return request({
+      method:'get',
+      url:`/service?language=${param}`
     })
   }
 }

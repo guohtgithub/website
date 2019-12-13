@@ -12,7 +12,7 @@ body{
 }
 .ant-menu-item-selected{
   background: none !important;
-  color: #1890ff !important;
+  color: #26B5D3 !important;
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -21,7 +21,9 @@ h1, h2, h3, h4, h5, h6{
 .mt-24{
   margin-top: 24px;
 }
-
+.mb-24{
+  margin-bottom: 24px;
+}
 .left{
   text-align: left;
 }
@@ -33,6 +35,12 @@ h1, h2, h3, h4, h5, h6{
 }
 .p-24-36{
   padding: 24px 36px !important;
+}
+.p-16{
+  padding:4px 8px;
+}
+.m-24-36{
+  margin: 24px 36px !important;
 }
 .pt-200{
   padding-top: 200px;
@@ -46,7 +54,13 @@ h1, h2, h3, h4, h5, h6{
   margin-right: 0 !important;
 }
 .lh-2{
-  line-height: 2;
+  line-height: 1.5;
+}
+.font-20{
+  font-size: 20px;
+}
+.font-14{
+  font-size: 14px;
 }
 .font-color-gray{
   color:#B3B3B4
@@ -107,6 +121,16 @@ h1, h2, h3, h4, h5, h6{
 .width-160{
   width: 160px;
 }
+.heigh-150{
+  height: 150px;
+}
+.height-350{
+  height: 350px;
+}
+.mobile-padding{
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
 .ant-back-top-inner{
   height: 40px;
@@ -119,9 +143,18 @@ h1, h2, h3, h4, h5, h6{
   font-size: 20px;
 }
 
+.posi-fixed{
+  position: fixed;
+  z-index: 9999;
+}
+
 .row-max{
   max-width: 1190px;
   margin: 0 auto !important;
+}
+
+.width-35{
+  width: 35%;
 }
 
 @media screen and (max-width:600px){

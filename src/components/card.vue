@@ -2,11 +2,19 @@
 <div class="commodity">
   <div class="container">
     <swiper class='swiImgs' :options="swiperOption" v-if="imgList.length!=0">
-      <swiper-slide v-for="(item, index) in imgList" data-index="index" :key="index" class="item">
-        <img class='swiImg' :src='item.url' />
-        <p v-for="name in item.list" :key="name.name">{{name.name}}</p>
+      <swiper-slide v-for="(item, index) in imgList" 
+        data-index="index" 
+        :key="index" class="item">
+        <img class='swiImg' :src='`${item.image}`' />
+        <h2>{{item.title}}</h2>
+        <a-row>
+          <a-col :xs=12 class="p-16 font-color-gray"
+            style="font-size:12px"
+            v-for="name in item.solution[0].list" 
+            :key="name.title"
+          >{{name.title}}</a-col>
+        </a-row>
       </swiper-slide>
-      <!-- <div class="swiper-pagination" slot="pagination"></div> -->
     </swiper>
     <div v-show="!isPC" class="swiper-button-prev outline"></div><!--左箭头。如果放置在swiper-container外面，需要自定义样式。-->
     <div v-show="!isPC" class="swiper-button-next outline"></div><!--右箭头。如果放置在swiper-container外面，需要自定义样式。-->
@@ -19,41 +27,11 @@ require("swiper/dist/css/swiper.css");
 import {mapGetters} from 'vuex'
 import {toolMethod} from '@/utils/index'
 export default {
+  props:['imgList'],
   data() {
     const that = this;
     let pc = toolMethod.any() // true wap
     return {
-      imgList: [
-        {
-          url:'https://boweisou.oss-cn-shenzhen.aliyuncs.com/yy/images/911a7002e11608fb581fffcde05d5257.jpg',
-          list:[
-            {name:'name1',desc:'desc'},
-            {name:'name2',desc:'desc'},
-            {name:'name3',desc:'desc'},
-          ]
-        },{
-          url:'https://boweisou.oss-cn-shenzhen.aliyuncs.com/yy/images/2_1536049430.jpg',
-          list:[
-            {name:'name4',desc:'desc'},
-            {name:'name5',desc:'desc'},
-            {name:'name6',desc:'desc'},
-          ]
-        },{
-          url:'https://boweisou.oss-cn-shenzhen.aliyuncs.com/yy/images/2_1536049430.jpg',
-          list:[
-            {name:'name7',desc:'desc'},
-            {name:'name8',desc:'desc'},
-            {name:'name9',desc:'desc'},
-          ]
-        },{
-          url:"https://boweisou.oss-cn-shenzhen.aliyuncs.com/yy/images/911a7002e11608fb581fffcde05d5257.jpg",
-          list:[
-            {name:'name0',desc:'desc'},
-            {name:'name01',desc:'desc'},
-            {name:'name02',desc:'desc'},
-          ]
-        }
-      ], //这里就使用假数据了
       imgIndex: 1,
       swiperOption: {
         //是一个组件自有属性，如果notNextTick设置为true，组件则不会通过NextTick来实例化swiper，也就意味着你可以在第一时间获取到swiper对象，假如你需要刚加载遍使用获取swiper对象来做什么事，那么这个属性一定要是true
@@ -123,6 +101,7 @@ export default {
         height: 19rem;
         .swiImg {
           width: 80%;
+          height: 200px;
         }
       }
     }

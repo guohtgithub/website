@@ -3,10 +3,14 @@
     <a-affix :offsetTop=0 class="container">
       <h1 :class="isPC?'center':''">
         <a href="/home">
-          website
+          <img src="./logo.png" alt="">
         </a>
       </h1>
-      <a-menu v-show="!isPC" v-model="current" mode="horizontal" class="nav" theme="dark" @click="handleSelect">
+      <a-menu v-show="!isPC" 
+        :defaultSelectedKeys='current'
+        :selectedKeys='current'
+        mode="horizontal" 
+        class="nav" theme="dark" @click="handleSelect">
         <template v-for="item in navData">
           <a-menu-item v-if="!item.content.length" 
             :key="item.path?item.path:item.sort">{{item.sort}}</a-menu-item>
@@ -30,12 +34,14 @@
       :visible='visible'
       v-show="isPC"
     >
-      <a-menu v-show="isPC" v-model="current" 
+      <a-menu v-show="isPC" 
+        :defaultSelectedKeys='current'
+        :selectedKeys='current'
         mode="inline" class="nav" @click="handleSelect">
         <template v-for="item in navData">
-          <a-menu-item v-if="!item.content.length && item.sort != '微信咨询'"
+          <a-menu-item v-if="!item.content.length"
             :key="item.path?item.path:item.sort">{{item.sort}}</a-menu-item>
-          <a-sub-menu v-else-if="item.content.length && item.sort != '微信咨询'" :key='item.path' :title="item.sort">
+          <a-sub-menu v-else-if="item.content.length" :key='item.path' :title="item.sort">
             <a-menu-item v-for="subItem in item.content" 
             :key="subItem.url?subItem.url:subItem.name">
               {{subItem.name}}
@@ -54,28 +60,30 @@ export default {
     return{
       navData:[
         {sort:'首页',path:'/home',content:[]},
-        {sort:'产品',path:'/product',content:[
-          {name:'产品1',url:'/product?type=1'},
-          {name:'产品2',url:'/product?type=2'},
-          {name:'产品3',url:'/product?type=3'},
-          {name:'产品4',url:'/product?type=4'},
+        {sort:'产品',path:'/product?type=1',content:[
+          // {name:'产品1',url:'/product?type=1'},
+          // {name:'产品2',url:'/product?type=2'},
+          // {name:'产品3',url:'/product?type=3'},
+          // {name:'产品4',url:'/product?type=4'},
         ]},
-        {sort:'解决方案',path:'/solution',content:[
-          {name:'解决方案1',url:'/solution?type=1'},
-          {name:'解决方案2',url:'/solution?type=2'},
-          {name:'解决方案3',url:'/solution?type=3'},
-          {name:'解决方案4',url:'/solution?type=4'},
+        {sort:'解决方案',path:'/solution?type=1',content:[
+          // {name:'解决方案1',url:'/solution?type=1'},
+          // {name:'解决方案2',url:'/solution?type=2'},
+          // {name:'解决方案3',url:'/solution?type=3'},
+          // {name:'解决方案4',url:'/solution?type=4'},
         ]},
-        {sort:'联系我们',path:'',content:[]},
-        {sort:'微信咨询',path:'',content:[]},
         {sort:'语言切换',path:'',content:[
           {name:'中文',url:''},
           {name:'English',url:''},
         ]},
       ],
-      current: ['/home'],
+      current: [],
       visible:false
     }
+  },
+  created(){
+    let path = (window.location.href.split('/#'))[1]
+    this.current = [path]
   },
   methods:{
     handleSelect({item,key}){
@@ -83,8 +91,31 @@ export default {
         this.$router.push({
           path:key
         })
-        this.current = key
+      }else if(key ==='中文'){
+        this.$store.dispatch('SetingLanguage',"cn")
+        this.navData=[
+          {sort:'首页',path:'/home',content:[]},
+          {sort:'产品',path:'/product?type=1',content:[]},
+          {sort:'解决方案',path:'/solution?type=1',content:[]},
+          {sort:'语言切换',path:'',content:[
+            {name:'中文',url:''},
+            {name:'English',url:''},
+          ]},
+        ]
+      }else if(key=== 'English'){
+        this.$store.dispatch('SetingLanguage','en')
+        this.navData = [
+          {sort:'Home',path:'/home',content:[]},
+          {sort:'Product',path:'/product?type=1',content:[]},
+          {sort:'Server',path:'/solution?type=1',content:[]},
+          {sort:'Language',path:'',content:[
+            {name:'中文',url:''},
+            {name:'English',url:''},
+          ]},
+        ]
       }
+      this.current = [key]
+      this.onClose()
     },
     showDrawer(){
       this.visible = true
