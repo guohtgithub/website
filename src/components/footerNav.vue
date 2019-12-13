@@ -75,5 +75,9 @@
 <style scoped>
   .li-div:hover{
     cursor: pointer;
+    color: #ffffff;
+  }
+  li{
+    line-height: 2;
   }
 </style>
