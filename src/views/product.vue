@@ -210,7 +210,7 @@ export default {
       let filter =  []
       filter = typeof str === 'string' ? 
       arr.filter(item => {
-        return item.title == key
+        return item.title == str
       }):
       filter = [arr[str-1]]
 
