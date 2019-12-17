@@ -56,8 +56,8 @@ h1, h2, h3, h4, h5, h6{
 .lh-2{
   line-height: 1.5;
 }
-.font-20{
-  font-size: 20px;
+.font-18{
+  font-size: 18px;
 }
 .font-14{
   font-size: 14px;
@@ -76,7 +76,9 @@ h1, h2, h3, h4, h5, h6{
   background: #17192F;
   padding: 10px;
 }
-
+.pd-30-50{
+  padding: 30px 50px;
+}
 .swiper-button-prev, .swiper-button-next{
   top: 65% !important;
 }
@@ -93,7 +95,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .menu-bg{
-  background: #0D0F26;
+  background: #17192f00;
   border-right: 1px solid #454754 !important;
 }
 
@@ -115,6 +117,9 @@ h1, h2, h3, h4, h5, h6{
   padding-top: 48px;
   padding-bottom: 48px;
 }
+.pd-t-80{
+  padding-top: 80px;
+}
 .pr-24{
   padding-right: 24px;
 }
@@ -123,6 +128,9 @@ h1, h2, h3, h4, h5, h6{
 }
 .heigh-150{
   height: 150px;
+}
+.heigh-200{
+  height: 200px;
 }
 .height-350{
   height: 350px;

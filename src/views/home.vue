@@ -3,43 +3,31 @@
     <!-- session 1 -->
     <div class="bg-img">
       <header-nav style="position: fixed;"></header-nav>
-        <a-row class="center-row" :class="!isPC?'ptb-190 row-max':'ptb-92-48 mg0'" :gutter="24">
-          <a-carousel autoplay effect='fade'>
-            <div>
-              <a-col :xs='24' :sm='12' class="mobile-top48 wow slideInRight">
-                <img :src="session1.image" alt="" class="img">
-              </a-col>
-              <a-col :xs='24' :sm='12' class="wow slideInLeft">
-                <div>
-                  <h2>{{session1.title}}</h2>
-                  <span class="font-color-gray lh-2">{{session1.content}}</span>
-                  <a :href="session1.link" v-show='session1.link' target="_blank">
-                    <a-button type="primary" class="mt-24">{{session1.more}}</a-button>
-                  </a>
-                </div>
-              </a-col>
-            </div>
-            <!-- <div>
-              <a-col :xs='24' :sm='12' class="mobile-top48 wow slideInRight">
-                <img src="./block-01-back.png" alt="" class="img">
-              </a-col>
-              <a-col :xs='24' :sm='12' class="wow slideInLeft">
-                <div>
-                  <h2>{{session1.title}}</h2>
-                  <span class="font-color-gray lh-2">{{session1.content}}</span>
+      <a-row class="center-row" :class="!isPC?'ptb-190 row-max':'ptb-92-48 mg0'" :gutter="24">
+        <a-carousel autoplay effect='fade'>
+          <div>
+            <a-col :xs='24' :sm='12' class="mobile-top48 wow slideInRight">
+              <img :src="session1.image" alt="" class="img">
+            </a-col>
+            <a-col :xs='24' :sm='12' class="wow slideInLeft">
+              <div>
+                <h2>{{session1.title}}</h2>
+                <span class="font-color-gray lh-2">{{session1.content}}</span>
+                <a :href="session1.link" v-show='session1.link' target="_blank">
                   <a-button type="primary" class="mt-24">{{session1.more}}</a-button>
-                </div>
-              </a-col>
-            </div> -->
-          </a-carousel>
-        </a-row>
+                </a>
+              </div>
+            </a-col>
+          </div>
+        </a-carousel>
+      </a-row>
     </div>
     <div class="row-max">
       <!-- session 2 -->
       <a-row class="center">
         <a-col :xs=24 :sm=22 :offset='!isPC?2:0' 
           class='pd-48 wow slideInLeft'>
-          <h2 class="font-color-blue">{{session2.title}}</h2>
+          <h2 class="font-color-blue" style="padding-bottom: 30px;">{{session2.title}}</h2>
           <span class="font-color-gray lh-2">{{session2.content}}</span>
         </a-col>
         <card-nav :imgList='productList'></card-nav>
@@ -47,16 +35,16 @@
       <a-row class="center " :class="!isPC?'pt-200':'mg0'" :gutter='24'>
         <a-col :xs=24 :sm=22 :offset='!isPC?2:0' 
           class='pd-48 wow slideInLeft'>
-          <h2 class="font-color-blue">{{session3.title}}</h2>
+          <h2 class="font-color-blue" style="padding-bottom: 30px;">{{session3.title}}</h2>
           <span class="font-color-gray lh-2">{{session3.content}}</span>
         </a-col>
       </a-row>
     </div>
     <div class="bg-imgs">
       <a-row :gutter='24' class='row-max'>
-        <a-col :xs="!isPC?6:12" class="ptb-48 wow slideInLeft">
+        <a-col :xs="!isPC?6:12" class="ptb-48 wow slideInLeft" style="padding-right:30px;">
           <a-menu mode='vertical' @click="handlClick" class="menu-bg" theme="dark" :defaultSelectedKeys="selectKey">
-            <a-menu-item v-for="item in solutionData" :key="item.title">
+            <a-menu-item v-for="item in solutionData" :key="item.title" style="font-size:initial;">
               {{item.title}}
             </a-menu-item>
           </a-menu>
@@ -70,13 +58,13 @@
     </div>
     <div class='row-max'>
       <!-- session 4 -->
-      <!-- <a-row class="ptb-48 center wow slideInLeft">
-        <a-col :xs=24 :sm=22 :offset='!isPC?2:0' class='pd-48'>
+      <a-row class="center wow slideInLeft" style="padding-top:48px;">
+        <a-col :xs=24 class='pd-48'>
           <h2 class="font-color-blue">{{session4.title}}</h2>
-          <span v-for="item in session4.friends" :key="item" class="pr-24">{{item}}</span>
         </a-col>
-      </a-row> -->
+      </a-row>
     </div>
+    <img :src="session4.image" alt="" width="100%" style="padding-bottom:48px;" />
     <a-back-top>
       <div class="ant-back-top-inner">UP</div>
     </a-back-top>
@@ -103,6 +91,7 @@ export default {
       session1:{},
       session2:{},
       session3:{},
+      session4:{},
       solutionData:[],
       session4:{
         title:'合作伙伴',
@@ -127,6 +116,7 @@ export default {
         this.session1 = data.section0[0]
         this.session2 = data.section1[0]
         this.session3 = data.section2[0]
+        this.session4 = data.section3[0]
 
         this.solutionData=data.service
 

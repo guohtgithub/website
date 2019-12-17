@@ -79,5 +79,9 @@
   }
   li{
     line-height: 2;
+    font-size: 12px;
+  }
+  h3{
+    font-size: 15px;
   }
 </style>

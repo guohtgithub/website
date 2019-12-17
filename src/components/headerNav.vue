@@ -2,9 +2,9 @@
   <header class="header" id='header'>
     <a-affix :offsetTop=0 class="container">
       <h1 :class="isPC?'center':''">
-        <a href="/home">
+        <router-link tag="a" to="/home">
           <img src="./logo.png" alt="">
-        </a>
+        </router-link>
       </h1>
       <a-menu v-show="!isPC" 
         :defaultSelectedKeys='current'

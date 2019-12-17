@@ -1,8 +1,8 @@
 <template>
   <div>
-    <header-nav style="position:fixed;"></header-nav>
-    <div class='solution-div row-max'>
-      <a-row :gutter='24' class="ptb-48 mg0">
+    <div style="background:#191B31">
+      <header-nav style="position:fixed;"></header-nav>
+      <a-row :gutter='24' class="ptb-48 mg0 row-max" :class="!isPC?'pd-t-80':''">
         <a-col :xs='12' :sm=6 style='padding-top:0;' 
           class="wow slideInLeft">
           <a-menu mode='vertical' 
@@ -11,13 +11,13 @@
             :defaultSelectedKeys="selectKey"
             :selectedKeys='selectKey'
           >
-            <a-menu-item v-for="item in solutionData" :key="item.name">
+            <a-menu-item v-for="item in solutionData" :key="item.name" style="font-size: initial;">
               {{item.name}}
             </a-menu-item>
           </a-menu>
         </a-col>
         <a-col :xs='12' :sm='9' 
-          class="wow slideInRight">
+          class="wow slideInRight" style="padding-top: 10px;">
           <h2>{{solutionTitle}}</h2>
           <p class="font-color-gray">{{solutionDesc}}</p>
         </a-col>
@@ -28,11 +28,12 @@
       </a-row>
       <!-- 解决方案 Tab -->
       <a-row>
-        <a-col :xs="!isPC?'20':'24'" :offset="!isPC?'4':'0'">
+        <a-col :xs="!isPC?'18':'24'" :offset="!isPC?'6':'0'">
           <a-menu @click="selectTabEvent" 
             mode='horizontal' theme="dark" 
             :defaultSelectedKeys='selectTab'
             :selectedKeys='selectTab'
+            style="background:rgba(255, 255, 255, 0);"
           >
             <a-menu-item v-for="item in descData" 
               :key="item.name" :class="!isPC?'width-160':''">
@@ -41,6 +42,9 @@
           </a-menu>
         </a-col>
       </a-row>
+    </div>
+    
+    <div class='solution-div row-max'>
       <div v-for="(item,index) in viewData" :key="item.title">
         <!-- 解决方案 -->
         <a-row :gutter='24' class="pd-48 solution mg0" v-if="(index+1)%2 === 1">
@@ -53,8 +57,8 @@
             :class="index%2?'slideInRight':'slideInLeft'"
             v-show="!item.list[0].link"
           > 
-            <div class="bg-gray wow slideInLeft heigh-150">
-              <h2 class="font-20 font-color-orgine">{{list.title}}</h2>
+            <div class="bg-gray wow slideInLeft heigh-200 pd-30-50">
+              <h2 class="font-18 font-color-orgine">{{list.title}}</h2>
               <p class="font-14 lh-2 font-color-gray">{{list.desc}}</p>
             </div>
           </a-col>
@@ -86,7 +90,7 @@
             <div class="bg-gray wow slideInRight height-350">
               <img src='./ic_nomal.png' :class="!isPC?'':'width-35'" class="img-icon" v-show="!list.image" />
               <img :src='list.image' :class="!isPC?'':'width-35'" class="img-icon" v-show="list.image" />
-              <h2 class="font-20 font-color-gray center">{{list.title}}</h2>
+              <h2 class="font-18 font-color-gray center">{{list.title}}</h2>
               <p class="font-14 font-color-gray ptb-48">{{list.desc}}</p>
             </div>
           </a-col>

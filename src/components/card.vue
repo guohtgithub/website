@@ -5,13 +5,16 @@
       <swiper-slide v-for="(item, index) in imgList" 
         data-index="index" 
         :key="index" class="item">
-        <img class='swiImg' :src='`${item.image}`' />
-        <h2>{{item.title}}</h2>
+        <img class='swiImg' :src='`${item.image}`' 
+        @click="toRouter(index)"
+      />
+        <h2 class="font-18">{{item.title}}</h2>
         <a-row>
           <a-col :xs=12 class="p-16 font-color-gray"
-            style="font-size:12px"
-            v-for="name in item.solution[0].list" 
+            style="font-size:12px;text-align:left;"
+            v-for="(name,ind) in item.solution[0].list" 
             :key="name.title"
+            :class="(ind+1)%2?'pd-l-20':'pd-r-20'"
           >{{name.title}}</a-col>
         </a-row>
       </swiper-slide>
@@ -81,6 +84,9 @@ export default {
     } : false;
   },
   methods: {
+    toRouter(index){
+      this.$router.push(`/product?type=${(index+1)}`)
+    }
   },
   computed:{
     ...mapGetters(['isPC'])
@@ -104,7 +110,16 @@ export default {
           height: 200px;
         }
       }
+      .item:hover{
+        cursor: pointer;
+      }
     }
   }
+}
+.pd-l-20{
+  padding-left: 65px;
+}
+.pd-r-20{
+  padding-right: 35px;
 }
 </style>
